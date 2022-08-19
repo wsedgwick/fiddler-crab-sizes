@@ -2,17 +2,32 @@
 title: "fiddler_crabs"
 format: html
 editor: visual
+execute: 
+  echo: false
+  warning: false
 ---
 
 ```{r}
-
 library(lterdatasampler)
 library(tidyverse)
+library()
+
+#| fig-cap: "this is my caption
+
 
 pie_crab <- lterdatasampler::pie_crab
 
 ggplot(data = pie_crab, aes(x = latitude, y = size)) +
   geom_point()
-
 ```
 
+```{r}
+crab_table <- pie_crab |>
+  group_by(site) |>
+  summarise(carapace_mean = mean(size, na.rm = TRUE), 
+            carapace_sd = sd(size, na.rm = TRUE),
+            count = n())
+
+print(crab_table)
+
+```
