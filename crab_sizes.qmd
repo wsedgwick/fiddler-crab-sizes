@@ -1,0 +1,14 @@
+---
+title: "fiddler_crabs"
+format: html
+editor: visual
+---
+
+```{r}
+
+library(lterdatasampler)
+
+pie_crab <- lterdatasampler::pie_crab
+
+```
+
