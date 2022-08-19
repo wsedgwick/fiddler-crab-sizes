@@ -10,7 +10,7 @@ execute:
 ```{r}
 library(lterdatasampler)
 library(tidyverse)
-library()
+library(kableExtra)
 
 #| fig-cap: "this is my caption
 
@@ -22,11 +22,23 @@ ggplot(data = pie_crab, aes(x = latitude, y = size)) +
 ```
 
 ```{r}
-crab_table <- pie_crab |>
-  group_by(site) |>
+crab_table <- pie_crab %>%
+  group_by(site) %>% 
   summarise(carapace_mean = mean(size, na.rm = TRUE), 
             carapace_sd = sd(size, na.rm = TRUE),
             count = n())
+
+mutated_crab_table <- crab_table %>%
+  rename(Site = "site",
+         "Carapace Mean" = "carapace_mean",
+         "Carapace Standard Deviation" = "carapace_sd",
+         "Frequency" = "count")
+
+kable(mutated_crab_table,
+      width = 2)
+
+
+
 
 print(crab_table)
 
